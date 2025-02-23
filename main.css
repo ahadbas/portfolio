@@ -125,10 +125,10 @@ b {
 
 /*---- div styling ----*/
 div.main {
-	padding-top: 20px;
+	padding-top: 40px;
 	padding-bottom: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
 	width: 470px;
 	float: left;
 	
