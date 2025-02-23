@@ -129,10 +129,9 @@ div.main {
 	padding-bottom: 40px;
 	padding-left: 40px;
 	padding-right: 40px;
-	width: 470px;
+	width: 420px;
 	float: left;
-	
-	
+
 }
 
 div.intro {
@@ -140,10 +139,10 @@ div.intro {
 }
 
 div.right {
-	padding-top: 20px;
+	padding-top: 40px;
 	padding-bottom: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
 	width: 440px;
 	float: left;
 }
@@ -270,7 +269,7 @@ div.case-study {
 	}
 
 	div.case-study {
-		width: calc(100% - 40px);
+		width: calc(100%);
 	}
 
 }
