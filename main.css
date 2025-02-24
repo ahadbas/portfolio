@@ -3,9 +3,13 @@
 	padding: 0;
 }
 
-body {
+html, body {
 	overflow-x: hidden !important;
+}
+
+body {
 	background-color: #f7f7f7;
+	position: relative;
 }
 
 .container {
@@ -83,9 +87,9 @@ a:hover {
 
 }
 
-a:hover:after { 
+/*a:hover:after { 
 	
-}
+} */
 
 /* Gradient CSS */
 /*.blob {
@@ -271,7 +275,7 @@ div.case-study {
 	}
 
 	div.case-study {
-		width: calc(100%);
+		width: 100%;
 	}
 
 }
@@ -294,6 +298,12 @@ div.case-study {
 		float: left;
 	}
 
+	div.intro {
+		margin-bottom: 80px;
+		width: calc(100% - 20px);
+		float: left;
+	}
+
 }
 
 @media screen and (max-width: 320px) {
@@ -312,6 +322,12 @@ div.case-study {
 		padding-top: 10px;
 		padding-left: 10px;
 		padding-bottom: 10px;
+		float: left;
+	}
+
+	div.intro {
+		margin-bottom: 80px;
+		width: calc(100% - 20px);
 		float: left;
 	}
 
