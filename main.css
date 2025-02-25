@@ -29,6 +29,11 @@ body {
     z-index: -100;
 }
 
+#direct-touch {
+	max-width:540px; 
+	
+}
+
 
 /*---- text styling ----*/
 h1 {
@@ -108,6 +113,68 @@ a:hover {
 b {
 	font-family: 'iAWriterMonoS-Bold';
 }
+
+/* blinking cursor */
+.blinking-cursor {
+	font-family: 'iAWriterMonoS-Regular', monospace;
+	font-size: 18px;
+	/* line-height: 25px; */
+	line-height: 28px;
+	letter-spacing: 0.02em;
+	color: #2E3D48;
+	-webkit-animation: 1s blink step-end infinite;
+	-moz-animation: 1s blink step-end infinite;
+	-ms-animation: 1s blink step-end infinite;
+	-o-animation: 1s blink step-end infinite;
+	animation: 1s blink step-end infinite;
+  }
+  
+  @keyframes "blink" {
+	from, to {
+	  color: transparent;
+	}
+	50% {
+	  color: black;
+	}
+  }
+  
+  @-moz-keyframes blink {
+	from, to {
+	  color: transparent;
+	}
+	50% {
+	  color: black;
+	}
+  }
+  
+  @-webkit-keyframes "blink" {
+	from, to {
+	  color: transparent;
+	}
+	50% {
+	  color: black;
+	}
+  }
+  
+  @-ms-keyframes "blink" {
+	from, to {
+	  color: transparent;
+	}
+	50% {
+	  color: black;
+	}
+  }
+  
+  @-o-keyframes "blink" {
+	from, to {
+	  color: transparent;
+	}
+	50% {
+	  color: black;
+	}
+  }
+
+
 
 /*---- div styling ----*/
 div.main {
