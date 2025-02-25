@@ -32,13 +32,13 @@ body {
 
 /*---- text styling ----*/
 h1 {
-	font-family: 'iAWriterMonoS-Bold', monospace;
+	font-family: 'iAWriterMonoS-Regular', monospace;
 	font-size: 28px;
 
 }
 
 h2 {
-	font-family: 'iAWriterMonoS-Bold', monospace;
+	font-family: 'iAWriterMonoS-Regular', monospace;
 	font-size: 18px;
 	
 }
