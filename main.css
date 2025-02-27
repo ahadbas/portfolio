@@ -263,7 +263,7 @@ div.case-study {
 	src: url("fonts/iAWriterMonoS-Italic.eot");
 	src: url("fonts/iAWriterMonoS-Italic.woff") format("woff"),
 		url("fonts/iAWriterMonoS-Italic.woff2") format("woff2");
-	font-style: notmal;
+	font-style: normal;
 	font-stretch: normal;
 }
 
@@ -349,16 +349,18 @@ div.case-study {
 
 	div.intro {
 		margin-bottom: 80px;
-		width: calc(100% - 20px);
+		width: calc(100% - 10px);
 		float: left;
 	}
+	
+
 
 }
 
 @media screen and (max-width: 320px) {
 
 	div.main {
-		width: calc(100% - 20px);
+		width: calc(100% - 10px);
 		padding-top: 10px;
 		padding-bottom: 10px;
 		padding-left: 10px;
