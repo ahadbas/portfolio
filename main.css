@@ -92,6 +92,17 @@ a:hover {
 
 }
 
+/* External links: diagonal arrow as plain text (U+2197, no VS16) */
+a[target="_blank"]::after {
+	content: "\00A0\2197";
+	font-style: normal;
+	font-variant-emoji: text;
+}
+
+blockquote.instagram-media a[target="_blank"]::after {
+	content: none;
+}
+
 /*a:hover:after { 
 	
 } */
@@ -189,7 +200,7 @@ div.main {
 }
 
 div.intro {
-	margin-bottom: 80px;
+	margin-bottom: 0;
 	width: 420px;
 }
 
@@ -203,8 +214,8 @@ div.right {
 }
 
 div.work {
-	margin: 0px;
-	
+	margin: 0;
+	margin-top: 80px;
 }
 
 div.case-study {
@@ -348,7 +359,7 @@ div.case-study {
 	}
 
 	div.intro {
-		margin-bottom: 80px;
+		margin-bottom: 0;
 		width: calc(100% - 10px);
 		float: left;
 	}
@@ -377,7 +388,7 @@ div.case-study {
 	}
 
 	div.intro {
-		margin-bottom: 80px;
+		margin-bottom: 0;
 		width: calc(100% - 20px);
 		float: left;
 	}

@@ -1,0 +1,375 @@
+/* Project detail pages — see LAYOUT.md */
+
+:root {
+	/* Fixed bar: 20px top + one line (main `p` line-height 28px) + 10px below name */
+	--site-header-pad-b: 10px;
+	--site-header-h: calc(var(--page-pad-x) + 28px + var(--site-header-pad-b));
+	--col-left-width: 420px;
+	--col-gap: 32px;
+	--row-gap: 24px;
+	--page-pad-x: 20px;
+	--font-mono: "iAWriterMonoS-Regular", "Inconsolata", "Prestige 12 Pitch", "Courier 10 Pitch", monospace;
+	--font-size-base: 12px;
+	--font-size-left: 14px;
+	--line-height-base: 1.2; /* 120% */
+	--letter-spacing: -2%;
+	--text-color: #000;
+	/* Right-column media: full width, fixed 4:3 frame */
+	--media-aspect-w: 4;
+	--media-aspect-h: 3;
+}
+
+/* Fixed “Ahad Basravi” bar — only on project pages (this sheet is loaded by meta.html). */
+body:has(.main.main--project) {
+	padding-top: var(--site-header-h);
+}
+
+div.main.main--project .site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	/* 20px above name, 10px below name, 20px sides; no fixed height */
+	padding: var(--page-pad-x) var(--page-pad-x) var(--site-header-pad-b) var(--page-pad-x);
+	background-color: #f7f7f7;
+}
+
+div.main.main--project .site-header p {
+	margin: 0;
+}
+
+/* Beat legacy `div.main` width/float at all breakpoints (main.css) */
+div.main.main--project {
+	float: none !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box;
+	/* `div.main` adds 20px top padding; the fixed site-header already insets the name like home, so don’t add it again for in-flow content */
+	padding-top: 0;
+	padding-left: var(--page-pad-x);
+	padding-right: var(--page-pad-x);
+}
+
+div.main.main--project .intro {
+	width: 100%;
+	max-width: 420px;
+}
+
+div.main.main--project h1 {
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 16px;
+	letter-spacing: var(--letter-spacing);
+}
+
+/* All text and links read as black (overrides main.css `a` pill style on this page) */
+div.main.main--project {
+	color: #000;
+	letter-spacing: var(--letter-spacing);
+}
+
+/* Override main.css `p { letter-spacing: 0.02em }` for project page copy */
+div.main.main--project p {
+	letter-spacing: var(--letter-spacing);
+}
+
+div.main.main--project a {
+	color: #000;
+	background-color: transparent;
+	padding-left: 0;
+	padding-right: 0;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+}
+
+div.main.main--project a:hover {
+	font-family: inherit;
+	background: none;
+	background-size: auto;
+	animation: none;
+	color: #000;
+	opacity: 0.6;
+}
+
+/* Site name: same as home (main.css `a` / `a:hover` pill) */
+div.main.main--project .site-header a,
+div.main.main--project .intro a {
+	color: #ffffff;
+	text-decoration: none;
+	background-color: black;
+	padding-left: 4px;
+	padding-right: 4px;
+	opacity: 1;
+}
+
+div.main.main--project .site-header a:hover,
+div.main.main--project .intro a:hover {
+	font-family: 'iAWriterMonoS-Italic', monospace;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 4s ease infinite;
+	color: #ffffff;
+	opacity: 1;
+}
+
+/* Intro line matches home `p` letter-spacing (not project -2%) */
+div.main.main--project .site-header p,
+div.main.main--project .intro p {
+	letter-spacing: 0.02em;
+}
+
+/* Undo legacy case-study width when inside project layout */
+div.main.main--project .case-study {
+	width: 100%;
+	padding-bottom: 0;
+}
+
+#direct-touch {
+	max-width: none;
+}
+
+.project-page {
+	padding: 4px 0 0;
+	font-family: var(--font-mono);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-base);
+	font-weight: 400;
+	color: var(--text-color);
+}
+
+.project-page .row {
+	display: flex;
+	align-items: stretch;
+	gap: var(--col-gap);
+	margin-bottom: var(--row-gap);
+}
+
+.project-page .row:last-child {
+	margin-bottom: 0;
+}
+
+.project-page .left-column {
+	width: var(--col-left-width);
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-family: var(--font-mono);
+	font-size: var(--font-size-left);
+	font-weight: 400;
+	line-height: var(--line-height-base);
+}
+
+/* main.css `p { font-size: 18px }` does not win over these. */
+.project-page .left-column .meta {
+	display: grid;
+	grid-template-columns: minmax(0, max-content) 1fr;
+	column-gap: 1ch;
+	row-gap: 0;
+	align-items: start;
+}
+
+.project-page .left-column .meta__index {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.project-page .left-column .meta p.meta__line {
+	grid-column: 2;
+}
+
+.project-page .left-column .meta p.meta__line:nth-of-type(1) {
+	grid-row: 1;
+}
+
+.project-page .left-column .meta p.meta__line:nth-of-type(2) {
+	grid-row: 2;
+}
+
+.project-page .left-column .meta p.meta__line:nth-of-type(3) {
+	grid-row: 3;
+}
+
+.project-page .left-column p.meta__line,
+.project-page .left-column .meta__index,
+.project-page .left-column p.description {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: var(--font-size-left);
+	font-weight: 400;
+	line-height: var(--line-height-base);
+	letter-spacing: var(--letter-spacing);
+}
+
+.project-page .left-column p.meta__line,
+.project-page .left-column .meta__index {
+	text-transform: uppercase;
+}
+
+.project-page .left-column .meta__index {
+	display: block;
+}
+
+.project-page .left-column p.description {
+	text-transform: none;
+	color: #000;
+}
+
+.project-page .right-column {
+	width: calc(100% - var(--col-left-width) - var(--col-gap));
+	min-width: 0;
+}
+
+/*
+  Image container: full width of the right column, 4:3 box.
+  Media uses object-fit: cover so it fills the frame (may crop to fit the ratio).
+*/
+.project-page .right-column .media-container {
+	width: 100%;
+	aspect-ratio: var(--media-aspect-w) / var(--media-aspect-h);
+	min-height: 0;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.project-page .right-column .media-container .media {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/*
+  other.html first project: fill the 4:3 cell height, natural width, left-aligned (side-crop on the right);
+  do not stretch to full column width.
+*/
+#other-photo-01 .right-column .media-container {
+	overflow: hidden;
+}
+
+#other-photo-01 .right-column .media-container .media {
+	inset: auto;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: 100%;
+	max-height: 100%;
+	object-fit: cover;
+	object-position: left center;
+}
+
+.project-page .right-column .media-container .media-embed {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+}
+
+.project-page .right-column .media-embed .instagram-media {
+	margin: 0 !important;
+	min-width: 0 !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	height: 100%;
+}
+
+.project-page .right-column .media-embed iframe {
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+}
+
+/*
+  Direct Touch / Instagram Reel: 540px wide (Instagram max) when the column has room;
+  when the column is narrower, width = 100% of the column. Height follows 9:16.
+*/
+#direct-touch .right-column .media-container {
+	aspect-ratio: auto;
+	height: auto;
+	min-height: 0;
+	max-height: none;
+}
+
+#direct-touch .right-column .media-container .media-embed {
+	position: relative;
+	inset: auto;
+	width: 100%;
+	height: auto;
+	min-height: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	overflow: hidden;
+}
+
+#direct-touch .right-column .media-embed .instagram-media {
+	margin: 0 !important;
+	min-width: 0 !important;
+	width: min(100%, 540px) !important;
+	max-width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 9 / 16;
+}
+
+#direct-touch .right-column .media-embed iframe {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+	:root {
+		--page-pad-x: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	:root {
+		--page-pad-x: 20px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.project-page .row {
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.project-page .left-column,
+	.project-page .right-column {
+		width: 100%;
+	}
+
+	/*
+	  Flatten the left column so title (meta) and copy (description) can be ordered
+	  independently: meta → media → description (not meta + description above media).
+	*/
+	.project-page .left-column {
+		display: contents;
+	}
+
+	.project-page .row .left-column > .meta,
+	.project-page .row .left-column > header.meta {
+		order: 1;
+	}
+
+	.project-page .row > .right-column {
+		order: 2;
+	}
+
+	.project-page .row .left-column > p.description {
+		order: 3;
+	}
+}
