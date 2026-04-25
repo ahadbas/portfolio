@@ -103,6 +103,11 @@ blockquote.instagram-media a[target="_blank"]::after {
 	content: none;
 }
 
+/* Home page: work list in the left column — no arrow on external links */
+div.main .work a[target="_blank"]::after {
+	content: none;
+}
+
 /*a:hover:after { 
 	
 } */
