@@ -1,5 +1,13 @@
 /* Project detail pages — see LAYOUT.md */
 
+@font-face {
+	font-family: "PP Editorial New";
+	src: url("fonts/PPEditorialNew-Regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	/* Fixed bar: 20px top + one line (main `p` line-height 28px) + 10px below name */
 	--site-header-pad-b: 10px;
@@ -17,6 +25,7 @@
 	/* Right-column media: full width, fixed 4:3 frame */
 	--media-aspect-w: 4;
 	--media-aspect-h: 3;
+	--font-project-h1: "PP Editorial New", Georgia, "Times New Roman", serif;
 }
 
 /* Fixed “Ahad Basravi” bar — only on project pages (this sheet is loaded by meta.html). */
@@ -60,10 +69,15 @@ div.main.main--project .intro {
 }
 
 div.main.main--project h1 {
+	font-family: var(--font-project-h1);
+	font-size: 50px;
+	font-weight: 400;
+	line-height: 1.1;
 	text-align: center;
 	text-transform: uppercase;
-	margin-bottom: 16px;
-	letter-spacing: var(--letter-spacing);
+	margin-top: 40px;
+	margin-bottom: 40px;
+	letter-spacing: -0.03em;
 }
 
 /* All text and links read as black (overrides main.css `a` pill style on this page) */
@@ -237,7 +251,8 @@ div.main.main--project .case-study {
 	position: relative;
 }
 
-.project-page .right-column .media-container .media {
+/* Direct child only — carousels wrap .media in slides */
+.project-page .right-column .media-container > .media {
 	position: absolute;
 	inset: 0;
 	display: block;
@@ -248,22 +263,108 @@ div.main.main--project .case-study {
 }
 
 /*
-  other.html first project: fill the 4:3 cell height, natural width, left-aligned (side-crop on the right);
-  do not stretch to full column width.
+  Reusable project carousel: add `class="row project-carousel"` on the <section> inside
+  .project-page. Strip offset: scroll 0 a spacer (left + gap) sits under the text; panning
+  can pass under the (transparent) left column. Right edge bleeds to viewport.
 */
-#other-photo-01 .right-column .media-container {
+.project-page .project-carousel {
+	position: relative;
+}
+
+.project-page .project-carousel .left-column {
+	position: relative;
+	z-index: 1;
+	background: transparent;
+	pointer-events: none;
+}
+
+.project-page .project-carousel .left-column .meta,
+.project-page .project-carousel .left-column p.description,
+.project-page .project-carousel .left-column a {
+	pointer-events: auto;
+}
+
+/* In-flow 4:3 block so the row gets height (the strip is out of flow) */
+.project-page .project-carousel__sizer {
+	width: 100%;
+	aspect-ratio: var(--media-aspect-w) / var(--media-aspect-h);
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.project-page .project-carousel .right-column {
+	position: relative;
+	z-index: 0;
+	overflow: visible;
+}
+
+.project-page .project-carousel .right-column .media-container--carousel {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	bottom: 0;
+	left: calc(-1 * (var(--col-left-width) + var(--col-gap)));
+	/* Bleed to viewport right edge (cancel main’s right padding) */
+	width: calc(100% + var(--col-left-width) + var(--col-gap) + var(--page-pad-x));
+	height: auto;
+	aspect-ratio: unset;
 	overflow: hidden;
 }
 
-#other-photo-01 .right-column .media-container .media {
-	inset: auto;
-	top: 0;
-	left: 0;
+.project-page .project-carousel .media-container--carousel .media-carousel {
+	--media-strip-gap: 20px;
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	/* No flex gap: it would sit between the strip spacer and slide 1 and misalign the first image */
+	gap: 0;
+	-webkit-user-select: none;
+	user-select: none;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	touch-action: pan-x pinch-zoom;
+}
+
+.project-page .project-carousel .media-container--carousel .media-carousel::-webkit-scrollbar {
+	display: none;
+}
+
+.project-page .project-carousel .media-container--carousel .media-carousel__slide {
+	flex: 0 0 auto;
+	height: 100%;
+	min-height: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.project-page .project-carousel .media-container--carousel .media-carousel__slide:not(:last-child) {
+	margin-right: var(--media-strip-gap);
+}
+
+/* Height matches the 4:3 frame; width follows image aspect (left-aligned crop) */
+.project-page .project-carousel .media-container--carousel .media-carousel__slide .media {
+	position: relative;
+	display: block;
 	width: auto;
 	height: 100%;
 	max-height: 100%;
 	object-fit: cover;
 	object-position: left center;
+	-webkit-user-drag: none;
+}
+
+.project-page .project-carousel__spacer {
+	flex: 0 0 auto;
+	width: calc(var(--col-left-width) + var(--col-gap));
+	height: 100%;
+	min-height: 0;
 }
 
 .project-page .right-column .media-container .media-embed {
@@ -371,5 +472,39 @@ div.main.main--project .case-study {
 
 	.project-page .row .left-column > p.description {
 		order: 3;
+	}
+
+	/* .project-carousel: stacked row — in-flow strip, not behind the copy */
+	.project-page .project-carousel__sizer {
+		display: none;
+	}
+
+	.project-page .project-carousel .left-column {
+		z-index: auto;
+		background: none;
+		pointer-events: auto;
+	}
+
+	.project-page .project-carousel .right-column {
+		position: static;
+		overflow: visible;
+	}
+
+	.project-page .project-carousel__spacer {
+		display: none;
+	}
+
+	.project-page .project-carousel .right-column .media-container--carousel {
+		position: relative;
+		z-index: auto;
+		inset: auto;
+		top: auto;
+		bottom: auto;
+		left: auto;
+		right: auto;
+		width: calc(100% + var(--page-pad-x));
+		margin-right: calc(-1 * var(--page-pad-x));
+		aspect-ratio: var(--media-aspect-w) / var(--media-aspect-h);
+		overflow: hidden;
 	}
 }

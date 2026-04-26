@@ -94,7 +94,7 @@
                 </div>
             </section>
 
-            <section class="row">
+            <section class="row project-carousel">
                 <div class="left-column">
                     <header class="meta">
                         <span class="meta__index">04</span>
@@ -109,8 +109,67 @@
                     </p>
                 </div>
                 <div class="right-column">
-                    <div class="media-container">
-                    <img class="media" src="images/meta-store.png" alt="Meta retail store experience" />
+                    <div class="project-carousel__sizer" aria-hidden="true"></div>
+                    <div class="media-container media-container--carousel">
+                        <div
+                            class="media-carousel"
+                            role="region"
+                            aria-roledescription="carousel"
+                            aria-label="Meta retail store — image strip, scroll or swipe to view"
+                            tabindex="0"
+                        >
+                            <div class="project-carousel__spacer" aria-hidden="true"></div>
+                            <div class="media-carousel__slide" aria-label="1 of 5">
+                                <img
+                                    class="media"
+                                    src="images/meta-store/01_Introducing-Meta-Store.jpg"
+                                    alt="Meta retail store, slide 1 of 5 — Introducing the Meta store"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="2 of 5">
+                                <img
+                                    class="media"
+                                    src="images/meta-store/02_Quest.jpg"
+                                    alt="Meta retail store, slide 2 of 5 — Quest"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="3 of 5">
+                                <img
+                                    class="media"
+                                    src="images/meta-store/03_RayBan-Stories.jpg"
+                                    alt="Meta retail store, slide 3 of 5 — Ray-Ban Stories"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="4 of 5">
+                                <img
+                                    class="media"
+                                    src="images/meta-store/04_Portal.jpg"
+                                    alt="Meta retail store, slide 4 of 5 — Portal"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="5 of 5">
+                                <img
+                                    class="media"
+                                    src="images/meta-store/05_Portal-Store.jpg"
+                                    alt="Meta retail store, slide 5 of 5 — Portal store"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -136,6 +195,7 @@
         </article>
     </div>
 
+    <script src="project-carousel.js" defer></script>
     <script async src="//www.instagram.com/embed.js"></script>
 </body>
 

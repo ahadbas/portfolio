@@ -28,7 +28,7 @@
         <h1>Other</h1>
 
         <article class="project-page">
-            <section class="row" id="other-photo-01">
+            <section class="row project-carousel">
                 <div class="left-column">
                     <header class="meta">
                         <span class="meta__index">01</span>
@@ -41,8 +41,47 @@
                     </p>
                 </div>
                 <div class="right-column">
-                    <div class="media-container">
-                        <img class="media" src="images/photo_lambo_01.jpg" alt="Photography — Lamborghini" />
+                    <div class="project-carousel__sizer" aria-hidden="true"></div>
+                    <div class="media-container media-container--carousel">
+                        <div
+                            class="media-carousel"
+                            role="region"
+                            aria-roledescription="carousel"
+                            aria-label="Photography — horizontal image strip, scroll or swipe to pan"
+                            tabindex="0"
+                        >
+                            <div class="project-carousel__spacer" aria-hidden="true"></div>
+                            <div class="media-carousel__slide" aria-label="1 of 3">
+                                <img
+                                    class="media"
+                                    src="images/photo_lambo_01.jpg"
+                                    alt="Photography 1 of 3 — Lamborghini"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="2 of 3">
+                                <img
+                                    class="media"
+                                    src="images/photography/OSAKA_AIR.JPG"
+                                    alt="Photography 2 of 3 — Osaka air"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                            <div class="media-carousel__slide" aria-label="3 of 3">
+                                <img
+                                    class="media"
+                                    src="images/photography/BLUR_FINAL.jpg"
+                                    alt="Photography 3 of 3 — Blur"
+                                    loading="lazy"
+                                    decoding="async"
+                                    draggable="false"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -86,6 +125,7 @@
             </section>
         </article>
     </div>
+    <script src="project-carousel.js" defer></script>
 </body>
 
 </html>
