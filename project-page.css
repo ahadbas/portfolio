@@ -9,9 +9,9 @@
 }
 
 :root {
-	/* Fixed bar: 20px top + one line (main `p` line-height 28px) + 10px below name */
+	/* Fixed bar: matches index.html intro name — 20px top + 18px/1.5 line + 10px below */
 	--site-header-pad-b: 10px;
-	--site-header-h: calc(var(--page-pad-x) + 28px + var(--site-header-pad-b));
+	--site-header-h: calc(var(--page-pad-x) + 27px + var(--site-header-pad-b));
 	--col-left-width: 420px;
 	--col-gap: 32px;
 	--row-gap: 24px;
@@ -39,16 +39,30 @@ div.main.main--project .site-header {
 	left: 0;
 	right: 0;
 	z-index: 100;
-	display: flex;
-	align-items: center;
 	box-sizing: border-box;
-	/* 20px above name, 10px below name, 20px sides; no fixed height */
+	/* Padding + block flow matched to index `.main` intro (same 20px / 18px × 1.5 line box) — no flex, which was shifting text slightly vs home */
 	padding: var(--page-pad-x) var(--page-pad-x) var(--site-header-pad-b) var(--page-pad-x);
 	background-color: #f7f7f7;
+	transform: translateY(0);
+	transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+/* project-header-scroll.js: scroll down = hide bar; scroll up = show (body padding unchanged so layout does not jump) */
+div.main.main--project .site-header.site-header--hidden {
+	transform: translateY(-100%);
+	pointer-events: none;
 }
 
 div.main.main--project .site-header p {
 	margin: 0;
+	/*
+	  index.html overrides main.css `p` with line-height 1.5 + letter-spacing 0 (inline `<style>`).
+	  27px matches 18px × 1.5 so offsets match `.main { padding-top: 20px }` + intro line.
+	*/
+	font-size: 18px;
+	line-height: 27px;
+	letter-spacing: 0;
 }
 
 /* Beat legacy `div.main` width/float at all breakpoints (main.css) */
@@ -131,10 +145,10 @@ div.main.main--project .intro a:hover {
 	opacity: 1;
 }
 
-/* Intro line matches home `p` letter-spacing (not project -2%) */
+/* Matches index inline `<style> p`: letter-spacing 0 (not main.css 0.02em / not project -2%) */
 div.main.main--project .site-header p,
 div.main.main--project .intro p {
-	letter-spacing: 0.02em;
+	letter-spacing: 0;
 }
 
 /* Undo legacy case-study width when inside project layout */
